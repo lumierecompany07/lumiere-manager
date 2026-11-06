@@ -1,0 +1,50 @@
+LUMIÈRE — 2-HOST SYNC SETUP (2026-11-06)
+
+1. GITHUB PAGES MANAGER:
+   Make a NEW GitHub repository (example: lumiere-manager).
+   Upload contents of "LUMIERE-Manager-GitHub-Pages.zip" to the repository root,
+   NOT the ZIP itself. In Settings > Pages choose main branch / root.
+   Open https://YOURUSERNAME.github.io/lumiere-manager/ .
+   GitHub Pages must be enabled. The manager page itself is public, but
+   all edits require Firebase Authentication and permission-based Firestore
+   and Storage rules; do not rely on the login UI as your only security.
+   Add YOURUSERNAME.github.io to Firebase Console > Authentication > Settings
+   > Authorized domains (use exact host; no https:// or repo path).
+
+2. CLOUDFLARE MAIN:
+   Upload "LUMIERE-Main-Cloudflare-Sync.zip" as a new static-assets deployment
+   of the current Main website project. Keep assets/ and *.html files together.
+   Test the preview gallery and open a full template.
+
+3. PUBLISH PHOTO:
+   Manager > Template Customize > choose template ID > Thumbnail (9:16),
+   Background (preview viewer), or Preview Photos > Upload.
+   Wait until upload completes, then press "Save & Publish This Template".
+   Main website subscribes to Firebase Firestore siteSettings/public and updates
+   the thumbnail/background URL without republishing GitHub or Cloudflare.
+   If Firebase auth, Storage, or Firestore security rules deny access, sync
+   will not work; configure those systems with admin-only WRITE permissions.
+
+4. IMPORTANT SCOPE:
+   Background field updates the *Main Website's template preview viewer*
+   (and gallery fallback cover), NOT the actual wedding invitation design's
+   HTML background photos or intro MP4. Changing those assets needs a separate
+   template customization feature.
+
+5. SPEED:
+   Thumbnail: 450x800 WebP, up to ~240 KB target.
+   Preview background: 540x960 WebP, up to ~320 KB target.
+   No full iframe needed for every mobile gallery card.
+
+6. SECURITY AND BILLING:
+   Never put Firebase service-account private keys or other secrets in the
+   public GitHub repo. Firebase web app configuration identifiers are public,
+   but Firestore/Storage security rules must protect writes. Firebase Storage
+   usage may have billing/plan requirements; verify account limits.
+
+7. TROUBLESHOOT:
+   - auth/unauthorized-domain => whitelist *.github.io host in Firebase Auth
+   - storage/unauthorized => fix Firebase Storage rules and logged-in admin role
+   - permission-denied => fix Firestore siteSettings/public write rules
+   - stale preview => hard refresh Main or wait for Firestore live snapshot
+   - 404 /assets/... => upload ENTIRE Main ZIP incl. assets/ folder
