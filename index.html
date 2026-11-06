@@ -313,75 +313,7 @@ html.lum-manager-reduced-motion .card,html.lum-manager-reduced-motion .user-chip
 #panel-templates .lum-dynamic-edit-photo{background:#3e3327;border:0;color:#fff6e8;border-radius:10px;font-weight:800;font-size:11px;padding:11px;min-height:39px;cursor:pointer}
 @media(max-width:650px){#panel-templates .lum-dynamic-settings{grid-template-columns:repeat(2,minmax(0,1fr))}#panel-templates .lum-dynamic-edit-photo{grid-column:1/-1}}
 </style>
-<style id="lumStudioManagerCompact20261106">
-/* The original inputs remain in DOM for compatibility with existing Firestore saving. */
-#panel-templatecustomize > .card{max-width:1160px;margin:auto}
-#panel-templatecustomize .lum-master-columns{display:none!important}
-#panel-templatecustomize .lum-master-lead{font-size:12px;max-width:740px}
-#panel-templatecustomize .lum-master-head{margin-bottom:16px}
-#panel-templatecustomize .lum-studio{display:grid;grid-template-columns:minmax(250px,.83fr) minmax(340px,1.17fr);gap:25px;align-items:start}
-#panel-templatecustomize .lum-studio-sidebar{display:grid;gap:14px}
-#panel-templatecustomize .lum-studio-card{border:1px solid #e5d6b9;background:#fffdf8;border-radius:22px;padding:18px;box-shadow:0 8px 25px #66502b0b}
-#panel-templatecustomize .lum-studio-kicker{color:#93713b;letter-spacing:.16em;font-size:9px;font-weight:900;text-transform:uppercase}
-#panel-templatecustomize .lum-studio-card h3{font:700 23px/1.24 'Playfair Display',serif;color:#342b23;margin:8px 0}
-#panel-templatecustomize .lum-studio-card p{font-size:11px;line-height:1.7;color:#7a6e60;margin:5px 0 13px}
-#panel-templatecustomize .lum-studio-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-#panel-templatecustomize .lum-studio-btn{border-radius:12px;padding:12px 10px;min-height:44px;font-size:11px;font-weight:800;border:1px solid #d9c39a;background:#fff6e5;color:#654b20;cursor:pointer}
-#panel-templatecustomize .lum-studio-btn.primary{background:linear-gradient(130deg,#dfc15d,#bd9229);color:#2c2926;border:0;box-shadow:none}
-#panel-templatecustomize .lum-studio-btn:focus-visible{outline:3px solid #bd942d;outline-offset:2px}
-#panel-templatecustomize .lum-studio-btn[disabled]{opacity:.6}
-#panel-templatecustomize .lum-studio-publish{width:100%;margin-top:12px}
-#panel-templatecustomize .lum-studio-hint{font-size:10px!important;color:#806d56!important}
-#panel-templatecustomize #lumStudioStatus{min-height:33px;margin:9px 0 0;font-size:11px;line-height:1.5;color:#705c3c;overflow-wrap:anywhere}
-#panel-templatecustomize .lum-studio-stage{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:22px 16px 20px;border:1px solid #e6d8c0;border-radius:28px;background:radial-gradient(circle at 50% 18%,#fffaf1,#efe2cb 85%)}
-#panel-templatecustomize .lum-studio-stagehead{display:flex;align-items:center;gap:8px;justify-content:space-between;width:100%;max-width:490px}
-#panel-templatecustomize .lum-studio-stagehead strong{font:700 13px/1.4 'Playfair Display',serif}
-#panel-templatecustomize .lum-studio-live{font-size:9px;font-weight:800;color:#8b6c37;letter-spacing:.09em}
-#panel-templatecustomize .lum-studio-phone{width:min(360px,100%);aspect-ratio:390/800;border:8px solid #252220;border-radius:43px;padding:6px;background:#252220;box-shadow:0 26px 45px #5c482938,0 0 0 1px #bc994e;position:relative;overflow:hidden}
-#panel-templatecustomize .lum-studio-screen{position:relative;width:100%;height:100%;overflow:hidden;background:#faf6ee;border-radius:29px}
-#panel-templatecustomize #lumStudioIframe{position:absolute;top:0;left:0;border:0;display:block;transform-origin:top left;background:#fffdf9;width:390px;height:790px}
-#panel-templatecustomize .lum-studio-island{position:absolute;z-index:4;left:50%;transform:translateX(-50%);top:7px;width:32%;height:15px;background:#211d1b;border-radius:0 0 17px 17px;pointer-events:none}
-#panel-templatecustomize .lum-studio-spinner{position:absolute;inset:0;z-index:3;display:grid;place-content:center;gap:9px;background:#f9f4ea;color:#8b724a;text-align:center;font-size:12px}
-#panel-templatecustomize .lum-studio-spinner[hidden]{display:none}
-#panel-templatecustomize .lum-studio-floating{position:absolute;z-index:6;right:13px;bottom:22px;display:flex;flex-direction:column;gap:9px}
-#panel-templatecustomize .lum-studio-round{width:47px;height:47px;border-radius:50%;border:1px solid #e3c47f;background:#2d2925;color:#f8d985;font-size:19px;box-shadow:0 4px 15px #0003;cursor:pointer}
-#panel-templatecustomize .lum-studio-round:focus-visible{outline:3px solid #dfbc59}
-#panel-templatecustomize .lum-studio-under{color:#87765f;font-size:10px;max-width:380px;text-align:center;line-height:1.6}
-#panel-templatecustomize .lum-studio-media{margin-top:2px}
-#panel-templatecustomize .lum-studio-media>summary{cursor:pointer;background:#f3e9d9;border:1px solid #e3d0af;color:#6d5331;border-radius:12px;padding:12px 14px;font-size:11px;font-weight:800}
-#panel-templatecustomize .lum-studio-media[open]>summary{border-radius:12px 12px 0 0}
-#panel-templatecustomize .lum-studio-media #lumCatalogEditor{margin:0;background:#fffefa;border-radius:0 0 16px 16px;padding:14px}
-#panel-templatecustomize .lum-studio-media .lum-catalog-layout{grid-template-columns:1fr}
-#panel-templatecustomize .lum-studio-media .lum-catalog-preview{display:none}
-#panel-templatecustomize .lum-studio-media #lumCatalogDetailRows,#panel-templatecustomize .lum-studio-media #lumCatalogAddDetail,#panel-templatecustomize .lum-studio-media #lumCatalogSummary{display:none}
-#panel-templatecustomize .lum-studio-media .lum-catalog-divider,#panel-templatecustomize .lum-studio-media .lum-catalog-summary-label{display:none}
-#lumStudioEditor{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:14px;background:#211a15a8;backdrop-filter:blur(4px)}
-#lumStudioEditor[hidden],#lumStudioGuest[hidden]{display:none!important}
-#lumStudioEditor .lum-editor-dialog{width:min(570px,100%);max-height:min(88dvh,750px);display:flex;flex-direction:column;border-radius:22px;background:#fbf7ee;border:1px solid #e8d9bb;box-shadow:0 30px 80px #0005;overflow:hidden}
-#lumStudioEditor .lum-editor-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 19px 13px}
-#lumStudioEditor .lum-editor-heading h3{margin:4px 0;font:700 23px 'Playfair Display',serif}
-#lumStudioEditor .lum-editor-close{border:1px solid #dfcfb4;background:#fffaf2;border-radius:9px;min-width:38px;min-height:38px;font-size:18px;cursor:pointer}
-#lumStudioEditor .lum-editor-tabs{display:flex;gap:5px;overflow-x:auto;padding:0 16px 12px;border-bottom:1px solid #e7d9c3}
-#lumStudioEditor .lum-editor-tab{border:1px solid #e3d5bf;padding:9px 12px;border-radius:12px;background:#f7efdf;color:#78664e;font-size:10px;font-weight:800;white-space:nowrap;cursor:pointer}
-#lumStudioEditor .lum-editor-tab[aria-selected=true]{background:#3c3227;color:#f9dea6;border-color:#3c3227}
-#lumStudioEditor .lum-editor-body{overflow-y:auto;padding:18px 19px 10px;flex:1}
-#lumStudioEditor .lum-editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-#lumStudioEditor label{display:grid;gap:7px;font-size:10px;font-weight:800;color:#756348}
-#lumStudioEditor input,#lumStudioEditor textarea{font-size:13px;box-shadow:none;background:#fffdf8;border-color:#dfd2b9;width:100%}
-#lumStudioEditor .lum-editor-wide{grid-column:1/-1}
-#lumStudioEditor .lum-editor-actions{padding:12px 19px 17px;display:flex;gap:10px;border-top:1px solid #e7d9c3}
-#lumStudioEditor .lum-editor-actions button{flex:1}
-#lumStudioEditor .lum-editor-list{display:grid;gap:10px}
-#lumStudioEditor .lum-master-entry{margin:0;background:#fffdfa;border:1px solid #e4d6bd;border-radius:14px;padding:12px;display:grid;gap:9px}#lumStudioEditor .lum-master-entry-top,#lumStudioEditor .lum-master-entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}#lumStudioEditor .lum-master-remove{border:0;background:transparent;color:#a23d3d;cursor:pointer}#lumStudioEditor .lum-master-entry input,#lumStudioEditor .lum-master-entry textarea{width:100%;padding:9px}
-#panel-templatecustomize #lumStudioGuest{padding:12px;margin-top:10px;background:#f9f0db;border:1px solid #e3d1a6;border-radius:13px}
-#panel-templatecustomize #lumStudioGuest label{font-size:11px;font-weight:800;color:#786039;display:block;margin-bottom:7px}
-#panel-templatecustomize #lumStudioGuest input{box-shadow:none;background:#fffefa;font-size:12px}
-#panel-templatecustomize #lumStudioGuest small{font-size:10px;line-height:1.5;color:#857157;display:block;margin-top:8px}
-@media(max-width:890px){#panel-templatecustomize .lum-studio{grid-template-columns:1fr}#panel-templatecustomize .lum-studio-sidebar{order:2}#panel-templatecustomize .lum-studio-stage{order:1}#panel-templatecustomize .lum-studio-phone{width:min(360px,100%)}}
-@media(max-width:480px){#panel-templatecustomize .lum-studio-stage{padding:15px 9px}#panel-templatecustomize .lum-studio-phone{width:min(330px,100%)}#panel-templatecustomize .lum-studio-actions{grid-template-columns:1fr 1fr}#lumStudioEditor .lum-editor-grid{grid-template-columns:1fr}#lumStudioEditor .lum-editor-wide{grid-column:auto}}
-@media(prefers-reduced-motion:reduce){#lumStudioEditor{backdrop-filter:none}}
-</style>
-<meta name="lumiere-preview-sync" content="single-source-manager-20261106">
+<meta name="lumiere-build" content="restored-ui-sync-only-20261106">
 </head>
 <body>
 <section class="login-shell" id="loginView">
@@ -6099,13 +6031,101 @@ function previewHosted(){
  if(!/^https:\/\//i.test(url)){status('Add a published HTTPS template URL in Template Links first.',true);return}
  let u;try{u=new URL(url)}catch(_){status('Invalid template URL',true);return}
  area.replaceChildren();const iframe=document.createElement('iframe');iframe.title='Template preview';iframe.loading='lazy';iframe.setAttribute('sandbox','allow-scripts allow-forms allow-popups');iframe.setAttribute('referrerpolicy','no-referrer');iframe.style.cssText='width:100%;height:470px;border:0;border-radius:16px;background:white';
- iframe.addEventListener('load',()=>{const d=collectCurrent();const row=templateInfo(selected)||{};const gallery=[...(Array.isArray(row.previewImages)?row.previewImages:[]),...(Array.isArray(row.defaults?.gallery)?row.defaults.gallery:[])].filter(v=>/^https:\/\//i.test(String(v||'')));if(gallery.length){d.gallery=Array.from(new Set(gallery)).slice(0,15);d.gallerySlots=Array.from({length:5},(_,i)=>d.gallery.filter((_,j)=>j%5===i));}d.templateSourceId=selected;d.hideHostControls=true;for(const type of ['LUMIERE_LIVE_UPDATE','LUMIERE_LIVE_DATA'])try{iframe.contentWindow.postMessage({type,source:'lumiere-dashboard',payload:d},'*')}catch(_){};},{once:true}); iframe.src=u.href;area.appendChild(iframe);
+ iframe.addEventListener('load',()=>{const d={...(templateInfo(selected)?.defaults||{}),...collectCurrent(),templateSourceId:selected,hideHostControls:false};const photos=(templateInfo(selected)?.previewImages||[]).filter(v=>/^https:\/\//i.test(String(v||'')));if(photos.length){d.gallery=photos;d.gallerySlots=Array.from({length:5},(_,i)=>photos.length<5?[photos[i%photos.length]]:photos.filter((_,j)=>j%5===i).slice(0,3))}for(const type of ['LUMIERE_LIVE_UPDATE','LUMIERE_LIVE_DATA'])try{iframe.contentWindow.postMessage({type,source:'lumiere-dashboard',payload:d},'*')}catch(_){};},{once:true}); iframe.src=u.href;area.appendChild(iframe);
  status('Published template preview opened. Template must include a compatible Live Bridge to reflect these values.');
 }
 function init(){
  const select=$('lumMasterSelect');if(!select)return;
  renderSelect(false);load(selected);
  select.addEventListener('change',()=>{if(editing&&JSON.stringify(snapshot())!==baseline&&!confirm('Discard unsaved template edits?')){select.value=String(selected);return}load(select.value)});
+
+ // LUMIERE: synchronize a native editor Apply action from the existing Published Template iframe.
+ // Keep the original Manager interface unchanged. Only the selected iframe is trusted.
+ let nativeSaving=false;
+ const NATIVE_KEYS=new Set(['bride','groom','brideParents','groomParents','date','time','venue','address','map','heroDesc','bio','foreverTitle','guest','story','itinerary','sectionVisibility','dressCode','contacts','seatNumber','gallery','gallerySlots','couplePhoto','couplePhotoUrl','togetherPhoto','backgroundImage','backgroundPhoto','headerImage']);
+ const photoKeys=new Set(['couplePhoto','couplePhotoUrl','togetherPhoto','backgroundImage','backgroundPhoto','headerImage']);
+ function isPhoto(x){return typeof x==='string'&&/^https:\/\//i.test(x)}
+ function isInlinePhoto(x){return typeof x==='string'&&/^data:image\/(png|jpeg|webp);base64,/i.test(x)}
+ async function resolveNativeImage(raw,id,index){
+   if(isPhoto(raw))return raw.slice(0,2048);
+   if(!isInlinePhoto(raw))return '';
+   if(typeof window.lumiereUploadNativeTemplatePhoto!=='function')throw new Error('Connect Supabase Photos first, then apply your image changes again.');
+   const blob=await (await fetch(raw)).blob();
+   const bitmap=await createImageBitmap(blob);
+   const size=Math.min(1,960/Math.max(bitmap.width,bitmap.height));
+   const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*size));canvas.height=Math.max(1,Math.round(bitmap.height*size));
+   canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();
+   const reduced=await new Promise((ok,no)=>canvas.toBlob(b=>b?ok(b):no(Error('Image compression failed')),'image/webp',.78));
+   if(reduced.size>2*1024*1024)throw Error('Photo exceeds 2 MB after compression; use Manager Gallery upload instead.');
+   const key='public-template-previews/'+id+'/native-'+Date.now()+'-'+index+'-'+Math.random().toString(36).slice(2,8)+'.webp';
+   return window.lumiereUploadNativeTemplatePhoto(reduced,key);
+ }
+ function simpleNativeObject(value,depth=0){
+   if(depth>4)return undefined;
+   if(typeof value==='string')return value.slice(0,2200);
+   if(typeof value==='boolean'||typeof value==='number')return value;
+   if(Array.isArray(value))return value.slice(0,15).map(v=>simpleNativeObject(v,depth+1)).filter(v=>v!==undefined);
+   if(value&&typeof value==='object'){
+     const o={};for(const [k,v] of Object.entries(value).slice(0,60)){
+       if(!/^[a-zA-Z0-9_ -]{1,60}$/.test(k)||['__proto__','prototype','constructor'].includes(k))continue;
+       const clean=simpleNativeObject(v,depth+1);if(clean!==undefined)o[k]=clean;
+     }return o;
+   }
+   return undefined;
+ }
+ async function nativeEditorSave(payload){
+   if(nativeSaving)return;
+   if(!payload||typeof payload!=='object'||Array.isArray(payload))return;
+   const id=Number(selected);const value=templateMap()[String(id)];
+   if(!currentUser||!value||id<1)return;
+   nativeSaving=true;status('Saving published template edits & photos…');
+   try{
+     const defaults={...(value.defaults||{})};
+     for(const [key,raw] of Object.entries(payload)){
+       if(!NATIVE_KEYS.has(key)||key==='gallery'||key==='gallerySlots')continue;
+       if(photoKeys.has(key)){
+         const url=await resolveNativeImage(raw,id,key);if(url)defaults[key]=url;
+       }else{
+         const clean=simpleNativeObject(raw);if(clean!==undefined)defaults[key]=clean;
+       }
+     }
+     let gallery=payload.gallery;
+     if(!Array.isArray(gallery)&&Array.isArray(payload.gallerySlots))gallery=payload.gallerySlots.flat(2);
+     if(Array.isArray(gallery)){
+       const urls=[];
+       for(let n=0;n<Math.min(15,gallery.length);n++){
+         let v=gallery[n];if(Array.isArray(v))v=v[0];
+         if(!v)continue;const url=await resolveNativeImage(v,id,n);if(url)urls.push(url);
+       }
+       defaults.gallery=urls;
+       if(urls.length){
+         defaults.gallerySlots=Array.from({length:5},(_,i)=>urls.length<5?[urls[i%urls.length]]:urls.filter((_,j)=>j%5===i).slice(0,3));
+       }else{defaults.gallerySlots=[];}
+       value.previewImages=urls;
+     }
+     value.defaults=defaults;
+     // Reflect native editing in existing text fields, without changing layout or resetting old features.
+     fields.forEach(([key])=>{const input=$('lumMaster_'+key);if(input&&typeof defaults[key]==='string')input.value=defaults[key]});
+     if(Array.isArray(defaults.story)){$('lumMasterStories').replaceChildren();defaults.story.forEach(v=>addRow('story',v))}
+     if(Array.isArray(defaults.itinerary)){$('lumMasterItinerary').replaceChildren();defaults.itinerary.forEach(v=>addRow('itinerary',v))}
+     changedConfigPaths.add('templates.'+id);markDirty();
+     const ok=await saveConfig({quiet:true});
+     if(!ok)throw Error('Firebase publishing was not confirmed. Try Publish Changes again.');
+     baseline=JSON.stringify(snapshot());editing=false;
+     status('Published! Main Website will show these same images and details.');
+     document.dispatchEvent(new Event('lumiere:site-settings'));
+   }catch(err){console.error('LUMIERE native editor',err);status('Not published: '+(err.message||err),true)}
+   finally{nativeSaving=false;}
+ }
+ window.addEventListener('message',event=>{
+   const frame=$('lumMasterLivePreview')?.querySelector('iframe');
+   if(!frame||event.source!==frame.contentWindow||!event.data)return;
+   const message=event.data;
+   const standard=message.source==='lumiere-template'&&message.type==='LUMIERE_CUSTOMIZER_UPDATE';
+   const scoped=message.source==='lumiere-template-scoped'&&message.type==='LUMIERE_TEMPLATE_SCOPED_EVENT'&&message.action==='LUMIERE_CUSTOMIZER_UPDATE';
+   if(standard||scoped)void nativeEditorSave(message.payload);
+ });
+
  $('lumMasterSave').addEventListener('click',save);
  $('lumMasterOpenPublished').addEventListener('click',previewHosted);
  $('lumMasterAddStory').addEventListener('click',()=>addRow('story'));
@@ -6192,6 +6212,7 @@ async function requireMediaUpload(){
  if(data.user.id!==MEDIA_ADMIN_UID)throw Error('This Supabase account is not authorized for media uploads.');
  return mediaClient;
 }
+window.lumiereUploadNativeTemplatePhoto=async function(blob,path){return uploadToMediaBucket(blob,path);};
 async function uploadToMediaBucket(blob,path){
  const client=await requireMediaUpload();
  if(!blob||!blob.type||!/^image\/(webp|jpeg|png)$/i.test(blob.type))throw Error('Only JPG, PNG and WebP photos are allowed.');
@@ -6203,7 +6224,6 @@ async function uploadToMediaBucket(blob,path){
  if(!/^https:\/\//.test(url))throw Error('Public image link was not returned. Set the Supabase bucket to Public.');
  return url;
 }
-window.lumiereUploadNativeTemplatePhoto=uploadToMediaBucket;
 async function loginMediaAccount(){
  const email=$('lumMediaEmail').value.trim(),password=$('lumMediaPassword').value;
  const btn=$('lumMediaConnect');
@@ -6374,166 +6394,6 @@ const start=Number(select.value||0);if(start)load(start);else setTimeout(()=>loa
  document.addEventListener('lumiere:manager-published',()=>{dirty=false;status('Published. Main website gallery will update after it receives Firebase settings.');});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-})();
-</script>
-<script id="lumStudioManagerCompact20261106JS">
-(function(){'use strict';
- const $=id=>document.getElementById(id);let id=0,ready=false,frameUrl='',loadSerial=0,previewGuest='',editorTab='names';
- const tabs={names:[['lumMaster_bride','Bride name'],['lumMaster_groom','Groom name'],['lumMaster_brideParents','Bride’s parents'],['lumMaster_groomParents','Groom’s parents']],event:[['lumMaster_date','Wedding date'],['lumMaster_time','Wedding time'],['lumMaster_venue','Venue'],['lumMaster_address','Venue address'],['lumMaster_map','Google Maps link']],words:[['lumMaster_heroDesc','Invitation message'],['lumMaster_foreverTitle','Together Forever heading'],['lumMaster_bio','Together Forever description'],['lumMaster_guest','Guest greeting'],['lumMasterName','Template title'],['lumMasterSubtitle','Subtitle'],['lumMasterDescription','Description']]};
- function nativeValue(key){return $(key)?.value||''}
- function isTextArea(key){return ['lumMaster_heroDesc','lumMaster_bio','lumMasterDescription'].includes(key)}
- function config(){try{if(typeof currentConfig!=='undefined'&&currentConfig?.templates)return currentConfig.templates;return window.LUMIERE_SITE_MANAGER_CONFIG?.templates||window.currentConfig?.templates||{}}catch(_){return{}}}
- function chosen(){return Number($('lumMasterSelect')?.value||id||1)}
- function getUrl(){const data=config()[String(chosen())]||{};const u=String(data.url||data.templateUrl||data.publishedUrl||'').trim();try{let parsed=new URL(u);if(parsed.protocol==='https:'&&!parsed.username&&!parsed.password)return parsed.href}catch(_){}try{let base=String($('mainSiteUrl')?.value||localStorage.getItem('lumiereManagerMainUrl')||'').trim();const host=new URL(base);if(host.protocol==='https:'&&!host.username&&!host.password)return new URL(String(chosen())+'.html',host).href}catch(_){}return ''}
- function currentPayload(){const keys=['bride','groom','brideParents','groomParents','date','time','venue','address','heroDesc','foreverTitle','bio','guest','map'];let d={};keys.forEach(k=>{d[k]=nativeValue('lumMaster_'+k)});for(let [kind,target] of [['lumMasterStories','story'],['lumMasterItinerary','itinerary']]){d[target]=Array.from($(kind)?.querySelectorAll('.lum-master-entry')||[]).map(row=>{let obj={};row.querySelectorAll('[data-part]').forEach(el=>obj[el.dataset.part]=el.value||'');return obj})}const entry=config()[String(chosen())]||{};
- const all=Array.from($('lumCatalogImages')?.querySelectorAll('.lum-catalog-photo-row img')||[]).map(x=>x.getAttribute('src')||'').filter(x=>/^https:\/\//i.test(x));
- const images=all.length?all:(Array.isArray(entry.previewImages)?entry.previewImages:[]).filter(x=>/^https:\/\//i.test(x));
- if(images.length){d.gallery=images.slice(0,15);d.gallerySlots=Array.from({length:5},(_,i)=>images.filter((_,j)=>j%5===i));}
- d.thumbnailUrl=$('lumThumbImage')?.getAttribute('src')||entry.thumbnailUrl||'';
- d.previewBackgroundUrl=$('lumBgImage')?.getAttribute('src')||entry.previewBackgroundUrl||'';
- d.templateSourceId=chosen();d.hideHostControls=true;d.guest=previewGuest||d.guest||'';return d}
- function send(){let frame=$('lumStudioIframe');if(!frame?.contentWindow||!frameUrl)return;const payload=currentPayload();if(frame.dataset.scopedTemplateId){payload.templateId=frame.dataset.scopedTemplateId;payload.templateScope=frame.dataset.scopedTemplateScope||undefined;}for(const type of ['LUMIERE_LIVE_UPDATE','LUMIERE_LIVE_DATA']){try{frame.contentWindow.postMessage({type,source:'lumiere-dashboard',payload},'*')}catch(_){}}}
- function scheduleSend(){send();setTimeout(send,150);setTimeout(send,550)}
- function scale(){const el=$('lumStudioScreen'),frame=$('lumStudioIframe');if(!el||!frame)return;const w=el.clientWidth,h=el.clientHeight;if(w<50||h<50)return;const scale=w/390;frame.style.width='390px';frame.style.height=Math.ceil(h/scale)+'px';frame.style.transform='scale('+scale+')'}
- function status(text,bad){let s=$('lumStudioStatus');if(!s)return;s.textContent=text;s.style.color=bad?'#a13a3a':'#806949'}
- function swap(force){const nextId=chosen();if(nextId!==id){previewGuest='';let guest=$('lumStudioGuestName');if(guest)guest.value='';}id=nextId;const url=getUrl(),frame=$('lumStudioIframe'),spinner=$('lumStudioSpinner'),title=$('lumStudioTemplateTitle');if(title)title.textContent=$('lumMasterSelect')?.selectedOptions?.[0]?.textContent||'Selected template';if(!frame)return;frameUrl=url;loadSerial++;const n=loadSerial;
- if(!url){frame.removeAttribute('src');spinner.hidden=false;spinner.textContent='No template URL found. Set its URL in Template Links, or the Main Website URL under Support.';status('Preview URL missing. Check Template Links or Support → Main Website URL.',true);return}
- if(url!==frame.dataset.src||force){delete frame.dataset.scopedTemplateId;delete frame.dataset.scopedTemplateScope;spinner.hidden=false;spinner.textContent='Loading selected wedding invitation…';frame.dataset.src=url;frame.onload=()=>{if(n!==loadSerial)return;scale();spinner.hidden=true;scheduleSend();setTimeout(send,1200)};frame.onerror=()=>{if(n!==loadSerial)return;spinner.textContent='Preview could not load. Check the template link.'};frame.src=url;status('Opening published wedding preview…');}
- else scheduleSend();
- }
- function nativeInput(key,val){const n=$(key);if(!n)return;n.value=val;n.dispatchEvent(new Event('input',{bubbles:true}));send()}
- function openTab(tab){editorTab=tab;const body=$('lumEditorFields');if(!body)return;body.replaceChildren();Array.from($('lumStudioEditor').querySelectorAll('.lum-editor-tab')).forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===tab)));
-  if(tab==='story'||tab==='itinerary'){
-    const desc=document.createElement('p');desc.textContent=tab==='story'?'Edit your wedding timeline chapters.':'Edit the celebration schedule.';desc.style.cssText='font-size:11px;color:#7b6d5b;margin:0 0 13px';body.append(desc);
-    let list=document.createElement('div');list.className='lum-editor-list';const original=$(tab==='story'?'lumMasterStories':'lumMasterItinerary');if(original)list.append(original);body.append(list);
-    const add=document.createElement('button');add.type='button';add.className='lum-studio-btn';add.style.marginTop='12px';add.textContent=tab==='story'?'+ Add story chapter':'+ Add itinerary item';add.onclick=()=>{(tab==='story'?$('lumMasterAddStory'):$('lumMasterAddItinerary'))?.click();scheduleSend()};body.append(add);return;
-  }
-  const grid=document.createElement('div');grid.className='lum-editor-grid';for(const [key,label] of tabs[tab]||[]){const row=document.createElement('label');row.textContent=label;const input=isTextArea(key)?document.createElement('textarea'):document.createElement('input');if(isTextArea(key)){input.rows=3;row.classList.add('lum-editor-wide')}else input.type=$(key)?.type==='date'?'date':'text';input.value=nativeValue(key);input.dataset.native=key;input.autocomplete='off';input.oninput=()=>nativeInput(key,input.value);row.append(input);grid.append(row)}body.append(grid);
- }
- function openEdit(){const dialog=$('lumStudioEditor');dialog.hidden=false;openTab(editorTab);setTimeout(()=>dialog.querySelector('.lum-editor-close')?.focus(),0)}
- function closeEdit(){const dialog=$('lumStudioEditor');dialog.hidden=true;const story=$('lumMasterStories'),itin=$('lumMasterItinerary');const hidden=$('lumStudioHiddenLists');if(hidden){story&&hidden.append(story);itin&&hidden.append(itin)}scheduleSend()}
- function publish(){if(!$('lumMasterSave'))return;closeEdit();$('lumMasterSave').click();status('Publishing live preview defaults to Firebase…')}
- function syncStatus(){const old=$('lumMasterStatus');if(!old)return;let t=old.textContent||'';if(t)status(t,/fail|error|denied|not confirmed/i.test(t));if(/Published to Firebase/i.test(t))scheduleSend()}
- function init(){if(ready||!$('panel-templatecustomize')||!$('lumMasterSelect'))return;ready=true;
- const head=$('panel-templatecustomize').querySelector('.lum-master-head');if(!head)return;
- const studio=document.createElement('section');studio.className='lum-studio';studio.setAttribute('aria-label','Interactive template preview');studio.innerHTML=`
- <div class="lum-studio-sidebar">
-  <div class="lum-studio-card"><span class="lum-studio-kicker">LIVE TEMPLATE STUDIO</span><h3>Edit the wedding you see.</h3><p>Choose a template above. Tap the pencil on the phone to customize its couple, ceremony, story and words. The public preview uses these same published sample details.</p><div class="lum-studio-actions"><button class="lum-studio-btn" id="lumStudioCustomize" type="button">✎ Customize</button><button class="lum-studio-btn" id="lumStudioInvite" type="button">✉ Invite Guest</button></div><div id="lumStudioGuest" hidden><label for="lumStudioGuestName">Preview as guest</label><input id="lumStudioGuestName" placeholder="Guest / invitor name" maxlength="120"><small>Preview only. This does not send an invitation or create a guest record.</small></div><button class="lum-studio-btn primary lum-studio-publish" id="lumStudioPublish" type="button">Save &amp; Publish Preview</button><div id="lumStudioStatus" role="status" aria-live="polite">Choose a template to preview.</div><p class="lum-studio-hint">Existing customer invitations are not overwritten. Publish changes only to the public sample preview.</p></div>
-  <details class="lum-studio-media"><summary>Optional: Thumbnail, background &amp; gallery photos</summary><div id="lumStudioMediaHolder"></div></details>
-  <div id="lumStudioHiddenLists" hidden></div>
- </div>
- <div class="lum-studio-stage"><div class="lum-studio-stagehead"><strong id="lumStudioTemplateTitle">Selected wedding template</strong><span class="lum-studio-live">● LIVE MOBILE</span></div><div class="lum-studio-phone"><div class="lum-studio-screen" id="lumStudioScreen"><iframe id="lumStudioIframe" title="Live wedding invitation sample" loading="eager" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads" allow="autoplay 'none'" ></iframe><div class="lum-studio-island" aria-hidden="true"></div><div id="lumStudioSpinner" class="lum-studio-spinner" role="status">Loading wedding preview…</div></div><div class="lum-studio-floating"><button id="lumStudioEditFab" class="lum-studio-round" type="button" aria-label="Customize the wedding preview" title="Customize">✎</button><button id="lumStudioGuestFab" class="lum-studio-round" type="button" aria-label="Invite Guest preview" title="Invite Guest">✉</button></div></div><span class="lum-studio-under">Scroll inside the phone to view the invitation. The pencil edits the public sample, not customer data.</span></div>`;
- head.insertAdjacentElement('afterend',studio);
- const catalog=$('lumCatalogEditor');if(catalog)$('lumStudioMediaHolder').append(catalog);
- for(const id of ['lumMasterStories','lumMasterItinerary']){const el=$(id);if(el)$('lumStudioHiddenLists').append(el)}
- const dialog=document.createElement('div');dialog.id='lumStudioEditor';dialog.hidden=true;dialog.innerHTML=`<div class="lum-editor-dialog" role="dialog" aria-modal="true" aria-labelledby="lumStudioEditTitle"><div class="lum-editor-heading"><div><span class="lum-studio-kicker">PUBLIC SAMPLE SETTINGS</span><h3 id="lumStudioEditTitle">Customize preview</h3></div><button type="button" class="lum-editor-close" aria-label="Close editor">×</button></div><div class="lum-editor-tabs" role="tablist">${[['names','Couple'],['event','Event'],['words','Words'],['story','Our Story'],['itinerary','Itinerary']].map(([key,label])=>'<button type="button" class="lum-editor-tab" role="tab" aria-selected="false" data-tab="'+key+'">'+label+'</button>').join('')}</div><div class="lum-editor-body" id="lumEditorFields"></div><div class="lum-editor-actions"><button type="button" class="lum-studio-btn" id="lumStudioEditDone">Done editing</button><button type="button" class="lum-studio-btn primary" id="lumStudioEditPublish">Save &amp; Publish</button></div></div>`;
- document.body.append(dialog);
- const toggleGuest=()=>{const box=$('lumStudioGuest');box.hidden=!box.hidden;if(!box.hidden)box.querySelector('input')?.focus()};
- $('lumStudioCustomize').onclick=openEdit;$('lumStudioEditFab').onclick=openEdit;
- $('lumStudioInvite').onclick=toggleGuest;$('lumStudioGuestFab').onclick=toggleGuest;
- $('lumStudioGuestName').oninput=e=>{previewGuest=e.target.value.slice(0,120);send()};
- $('lumStudioPublish').onclick=publish;$('lumStudioEditPublish').onclick=publish;
- $('lumStudioEditDone').onclick=closeEdit;dialog.querySelector('.lum-editor-close').onclick=closeEdit;
- dialog.addEventListener('click',e=>{if(e.target===dialog)closeEdit()});
- dialog.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab)));
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.hidden)closeEdit()});
- $('lumMasterSelect').addEventListener('change',()=>{closeEdit();setTimeout(()=>swap(true),0)});
- $('lumMasterReload')?.addEventListener('click',()=>setTimeout(()=>swap(true),50));
- $('panel-templatecustomize').addEventListener('input',e=>{if(e.target.closest('#lumEditorFields')||e.target.closest('.lum-master-columns'))send()});
- window.addEventListener('message',e=>{const f=$('lumStudioIframe');if(e.source!==f?.contentWindow)return;const type=e.data?.type;if(type==='LUMIERE_TEMPLATE_SCOPED_EVENT'&&e.data?.action==='LUMIERE_TEMPLATE_READY'){f.dataset.scopedTemplateId=e.data.templateId||'';f.dataset.scopedTemplateScope=e.data.templateScope||'';scheduleSend()}else if(type==='LUMIERE_TEMPLATE_READY'||type==='LUMIERE_NATIVE_EDIT_APPLIED')scheduleSend()});
- document.addEventListener('lumiere:site-settings',()=>setTimeout(()=>swap(false),70));
- const statusObserver=new MutationObserver(syncStatus);const oldStatus=$('lumMasterStatus');if(oldStatus)statusObserver.observe(oldStatus,{childList:true,characterData:true,subtree:true});
- if(typeof ResizeObserver==='function')new ResizeObserver(scale).observe($('lumStudioScreen'));window.addEventListener('resize',scale);
- setTimeout(()=>{swap(true);scale();syncStatus()},30);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
-</script>
-<script id="lumManagerNativeToPublic20261106">
-(function(){'use strict';
- const $=id=>document.getElementById(id);
- const permitted=new Set(['bride','groom','brideParents','groomParents','date','time','venue','address','map','heroDesc','bio','foreverTitle','guest','story','itinerary','gallery','gallerySlots','sectionVisibility','dressCode','dressCodeColors','contacts','couplePhoto','couplePhotoUrl','togetherPhoto','seatNumber','backgroundImage','backgroundPhoto','headerImage','extendedDetails','sectionText','labels','dressCodeTitle','contactTitle','contactSubtitle','rsvpTitle','heroTitle','introTitle','musicUrl','videoUrl']);
- let locked=false;
- function status(message,error){const el=$('lumMasterStatus');if(el){el.textContent=message;el.style.color=error?'#a33e3e':'#176544';}const label=$('lumStudioStatus');if(label){label.textContent=message;label.style.color=error?'#a33e3e':'#176544';}}
- function expectedFrame(source){return [ $('lumStudioIframe'),$('lumMasterLivePreview')?.querySelector('iframe') ].some(f=>f&&f.contentWindow===source);}
- function imageData(v){return typeof v==='string'&&/^data:image\/(?:webp|png|jpeg);base64,/i.test(v)}
- async function persistImage(value,id,index){
-   if(typeof value!=='string')return '';
-   if(/^https:\/\//i.test(value))return value.slice(0,2048);
-   if(!imageData(value))return '';
-   const blob=await (await fetch(value)).blob();
-   if(blob.size>2*1024*1024)throw Error('One photo exceeds 2 MB after optimization. Re-upload it using Manager → Gallery Photos.');
-   if(typeof window.lumiereUploadNativeTemplatePhoto!=='function')throw Error('Supabase photo upload is not connected. Open Manager → Connect Supabase Photos.');
-   const ext=blob.type==='image/webp'?'webp':blob.type==='image/png'?'png':'jpg';
-   return await window.lumiereUploadNativeTemplatePhoto(blob,'public-template-previews/'+id+'/native-'+Date.now()+'-'+index+'-'+Math.random().toString(36).slice(2,8)+'.'+ext);
- }
- async function safePhotos(list,id){
-  if(!Array.isArray(list))return undefined;
-  let out=[];
-  for(let i=0;i<Math.min(list.length,15);i++){
-    let raw=list[i];if(Array.isArray(raw))raw=raw[0];
-    if(!raw)continue;
-    const photo=await persistImage(raw,id,i);
-    if(photo)out.push(photo);
-  }
-  return out;
- }
- function objectCopy(input,max=12){
-  if(!input||typeof input!=='object'||Array.isArray(input))return {};
-  const out={};
-  for(const [k,v] of Object.entries(input).slice(0,40)){
-   if(typeof v==='string')out[k]=v.slice(0,2400);
-   else if(typeof v==='boolean')out[k]=v;
-   else if(Array.isArray(v))out[k]=v.slice(0,max).filter(x=>typeof x==='string'||(x&&typeof x==='object')).map(x=>typeof x==='string'?x.slice(0,2048):objectCopy(x));
-   else if(v&&typeof v==='object')out[k]=objectCopy(v);
-  }
-  return out;
- }
- async function saveNative(payload){
-  if(locked)return;
-  if(!payload||typeof payload!=='object'||Array.isArray(payload))return;
-  const id=Number($('lumMasterSelect')?.value||0);
-  if(!Number.isInteger(id)||id<1)return;
-  const entry=(typeof currentConfig!=='undefined')&&currentConfig?.templates?.[String(id)];
-  if(!entry){status('Selected template is not in Manager catalogue.',true);return;}
-  locked=true;status('Applying template edits and uploading any new photos…');
-  try{
-   const defaults={...((entry.defaults&&typeof entry.defaults==='object')?entry.defaults:{})};
-   for(const [k,v] of Object.entries(payload)){
-    if(!permitted.has(k)||k==='gallery'||k==='gallerySlots')continue;
-    if(['couplePhoto','couplePhotoUrl','togetherPhoto','backgroundImage','backgroundPhoto','headerImage'].includes(k)){
-     const url=await persistImage(v,id,k);if(url)defaults[k]=url;
-    }else if(typeof v==='string')defaults[k]=v.slice(0,2400);
-    else if(v&&typeof v==='object')defaults[k]=Array.isArray(v)?v.slice(0,15).map(o=>objectCopy(o)):objectCopy(v);
-   }
-   const photos=await safePhotos(payload.gallery,id);
-   if(photos!==undefined){defaults.gallery=photos;entry.previewImages=photos;}
-   if(Array.isArray(payload.gallerySlots)&&photos===undefined){
-     const flattened=payload.gallerySlots.flat(2);
-     const slotPhotos=await safePhotos(flattened,id);if(slotPhotos!==undefined){defaults.gallery=slotPhotos;entry.previewImages=slotPhotos;}
-   }
-   entry.defaults=defaults;
-   for(const k of ['bride','groom','brideParents','groomParents','date','time','venue','address','map','heroDesc','bio','foreverTitle','guest']){
-    const input=$('lumMaster_'+k);if(input&&typeof defaults[k]==='string')input.value=defaults[k];
-   }
-   if(typeof changedConfigPaths!=='undefined')changedConfigPaths.add('templates.'+id);
-   if(typeof markDirty==='function')markDirty();
-   if(typeof saveConfig!=='function')throw Error('Manager Firestore publisher unavailable.');
-   const ok=await saveConfig({quiet:true});
-   if(!ok)throw Error('Firestore did not confirm saving the template.');
-   status('Template #'+id+' saved! Main Website preview will use the same text and photos.');
-   document.dispatchEvent(new CustomEvent('lumiere:site-settings'));
-  }catch(e){console.error('LUMIERE native preview sync',e);status('Template edit not published: '+(e?.message||e),true);}
-  finally{locked=false;}
- }
- window.addEventListener('message',e=>{
-   if(!expectedFrame(e.source))return;
-   const data=e.data||{};
-   const legacy=data.source==='lumiere-template'&&data.type==='LUMIERE_CUSTOMIZER_UPDATE';
-   const scoped=data.source==='lumiere-template-scoped'&&data.type==='LUMIERE_TEMPLATE_SCOPED_EVENT'&&data.action==='LUMIERE_CUSTOMIZER_UPDATE';
-   if(!legacy&&!scoped)return;
-   void saveNative(data.payload);
- });
 })();
 </script>
 </body>
