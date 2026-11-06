@@ -304,6 +304,15 @@ html.lum-manager-reduced-motion .card,html.lum-manager-reduced-motion .user-chip
 #panel-templatecustomize .lum-media-message.error{color:#a43f3f}
 @media(max-width:600px){#panel-templatecustomize .lum-media-login{flex-direction:column;align-items:stretch}#panel-templatecustomize .lum-media-login .field{flex:auto;width:100%}#panel-templatecustomize .lum-media-login>button{width:100%}}
 </style>
+<style id="lumDynamicTemplateV2Styles">
+#panel-templates .template-row{row-gap:12px}
+#panel-templates .lum-dynamic-settings{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:end;gap:10px;background:#fff9ed;border:1px solid #e7d8bd;padding:11px;border-radius:13px}
+#panel-templates .lum-dynamic-option{display:flex;flex-direction:column;gap:6px;min-width:0}
+#panel-templates .lum-dynamic-option span{color:#7a684d;font-size:10px;font-weight:800}
+#panel-templates .lum-dynamic-option select{width:100%;padding:10px 8px;font:600 11px 'Plus Jakarta Sans',sans-serif;background:#fffdf9;border:1px solid #dac8a9;border-radius:9px;color:#473d31;min-height:39px}
+#panel-templates .lum-dynamic-edit-photo{background:#3e3327;border:0;color:#fff6e8;border-radius:10px;font-weight:800;font-size:11px;padding:11px;min-height:39px;cursor:pointer}
+@media(max-width:650px){#panel-templates .lum-dynamic-settings{grid-template-columns:repeat(2,minmax(0,1fr))}#panel-templates .lum-dynamic-edit-photo{grid-column:1/-1}}
+</style>
 </head>
 <body>
 <section class="login-shell" id="loginView">
@@ -1682,7 +1691,7 @@ document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',
     userui:['User UI Editor','Edit one logged customer’s plan, dashboard access and Customize Invitation fields.'],
     content:['Content Editor','Edit the text customers see on the main website.'],
     sections:['Section Controls','Show, hide and publish optional website sections without editing HTML.'],
-    templates:['Template Links','Connect the real published template websites.'],
+    templates:['Template Links','Add unlimited template links, set Classic/VIP, and publish thumbnail previews.'],
     templatecustomize:['Template Customize','Control template defaults that Main customers see and personalize.'],
     support:['Support Settings','Manage public support links and manager shortcuts.'],
     admins:['Admin Accounts','Create, review and revoke Site Manager accounts.']
@@ -5225,8 +5234,36 @@ function makeField(label,key,type,placeholder,value){
   var input=document.createElement('input');input.dataset.key=key;if(type)input.type=type;if(placeholder)input.placeholder=placeholder;input.value=value||'';
   wrap.append(l,input);return wrap;
 }
+
+function addSelect(parent,label,key,options,defaultValue){
+  var wrap=document.createElement('label');wrap.className='lum-dynamic-option';
+  var heading=document.createElement('span');heading.textContent=label;
+  var select=document.createElement('select');select.dataset.key=key;select.setAttribute('aria-label',label);
+  options.forEach(function(o){var opt=document.createElement('option');opt.value=o[0];opt.textContent=o[1];select.appendChild(opt)});
+  select.value=defaultValue;
+  wrap.append(heading,select);parent.appendChild(wrap);return select;
+}
+function addRowSettings(row){
+  if(row.querySelector('.lum-dynamic-settings'))return;
+  var id=Number(row.dataset.template||0),data=cfgTemplates()[String(id)]||{};
+  var holder=document.createElement('div');holder.className='lum-dynamic-settings';
+  addSelect(holder,'Design category','category', [['royal','Royal'],['floral','Floral'],['minimal','Minimal']], ['royal','floral','minimal'].includes(data.category)?data.category:'royal');
+  addSelect(holder,'Package access','tier', [['classic','Classic'],['vip','VIP']],data.tier==='vip'?'vip':data.tier==='classic'?'classic':id>=21?'vip':'classic');
+  addSelect(holder,'Gallery visibility','published', [['no','Draft · Hidden'],['yes','Published · Visible']],data.published==='yes'?'yes':data.published==='no'?'no':id>30?'no':'yes');
+  var link=document.createElement('button');link.type='button';link.className='lum-dynamic-edit-photo';link.textContent='🖼 Edit thumbnail';
+  link.addEventListener('click',function(){
+    var nav=document.querySelector('.nav-btn[data-panel="templatecustomize"]');if(nav)nav.click();
+    setTimeout(function(){var select=document.getElementById('lumMasterSelect');if(!select)return;
+      var option=Array.from(select.options).find(function(o){return Number(o.value)===id});
+      if(!option){alert('Save this template link first, then reopen Template Customize.');return;}
+      select.value=String(id);select.dispatchEvent(new Event('change',{bubbles:true}));
+      select.scrollIntoView({behavior:'smooth',block:'center'});
+    },100);
+  });holder.appendChild(link);row.appendChild(holder);
+}
+
 function bindRow(row){
-  if(!row||row.dataset.lumCrudBound==='1')return;row.dataset.lumCrudBound='1';
+  if(!row)return;addRowSettings(row);if(row.dataset.lumCrudBound==='1')return;row.dataset.lumCrudBound='1';
   var id=String(row.dataset.template||'');
   var test=row.querySelector('.test-template');
   if(!test){
@@ -5279,7 +5316,7 @@ function refreshCount(){
   try{updateMetrics()}catch(_){}
 }
 function addTemplate(){
-  var id=nextId(),data={title:'New Template '+id,subtitle:'Custom published template',url:''};
+  var id=nextId(),data={title:'New Template '+id,subtitle:'Custom published template',url:'',category:'royal',tier:'classic',published:'no'};
   cfgTemplates()[String(id)]=data;
   if(!Array.isArray(currentConfig.templateOrder))currentConfig.templateOrder=[];
   currentConfig.templateOrder=currentConfig.templateOrder.map(Number).filter(function(n){return cfgTemplates()[String(n)]});
@@ -5303,7 +5340,7 @@ function installToolbar(){
   panel=document.getElementById('panel-templates');list=panel&&panel.querySelector('#templateList');if(!panel||!list)return;
   if(!panel.querySelector('.lum-template-crud-bar')){
     toolbar=document.createElement('div');toolbar.className='lum-template-crud-bar';
-    toolbar.innerHTML='<div class="lum-template-crud-copy"><strong>Add / remove template links</strong><small>Create a new published-template row or delete an unused one. Changes save with the normal Manager sync.</small></div><div class="lum-template-crud-actions"><span class="lum-template-count-pill" id="lumTemplateCrudCount">0 linked • 0 total</span><button class="lum-add-template-link" id="lumAddTemplateLinkBtn" type="button">＋ Add Template Link</button></div>';
+    toolbar.innerHTML='<div class="lum-template-crud-copy"><strong>Add / remove template links</strong><small>Add a template link, choose Classic/VIP, upload its thumbnail and set Published only when ready. Syncs with the Main Website.</small></div><div class="lum-template-crud-actions"><span class="lum-template-count-pill" id="lumTemplateCrudCount">0 linked • 0 total</span><button class="lum-add-template-link" id="lumAddTemplateLinkBtn" type="button">＋ Add Template Link</button></div>';
     list.parentElement.insertBefore(toolbar,list);toolbar.querySelector('#lumAddTemplateLinkBtn').addEventListener('click',addTemplate);
   }else toolbar=panel.querySelector('.lum-template-crud-bar');
   countPill=toolbar.querySelector('#lumTemplateCrudCount');syncRowsFromConfig();refreshCount();
@@ -5311,7 +5348,15 @@ function installToolbar(){
 
 /* Build/remove rows before the original form loader writes field values. Null values are persistent delete tombstones. */
 if(originalFillForm){
-  fillForm=function(){installToolbar();syncRowsFromConfig();var r=originalFillForm.apply(this,arguments);syncRowsFromConfig();refreshCount();return r};
+  fillForm=function(){installToolbar();syncRowsFromConfig();var r=originalFillForm.apply(this,arguments);syncRowsFromConfig();
+var defaults={"1":"royal","2":"royal","3":"floral","4":"minimal","5":"royal","6":"floral","7":"royal","8":"minimal","9":"floral","10":"royal","11":"minimal","12":"floral","13":"floral","14":"royal","15":"floral","16":"minimal","17":"royal","18":"royal","19":"minimal","20":"floral","21":"royal","22":"royal","23":"royal","24":"minimal","25":"royal","26":"royal","27":"floral","28":"royal","29":"royal","30":"minimal"};
+list.querySelectorAll('.template-row[data-template]').forEach(function(row){
+  var id=Number(row.dataset.template);
+  var cat=row.querySelector('[data-key="category"]'),tier=row.querySelector('[data-key="tier"]'),pub=row.querySelector('[data-key="published"]');
+  if(cat&&!['royal','floral','minimal'].includes(cat.value))cat.value=defaults[id]||'royal';
+  if(tier&&!['classic','vip'].includes(tier.value))tier.value=id>=21&&id<=30?'vip':'classic';
+  if(pub&&!['yes','no'].includes(pub.value))pub.value=id<=30?'yes':'no';
+});refreshCount();return r};
 }
 
 document.addEventListener('input',function(e){if(e.target&&e.target.matches('#panel-templates [data-key]'))refreshCount()});
