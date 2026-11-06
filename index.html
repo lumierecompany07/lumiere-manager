@@ -1491,6 +1491,56 @@ function getLumierePublicVerifierClient(){
 function cloneManagerPublicValue(v){
   try{return structuredClone(v)}catch(_){try{return JSON.parse(JSON.stringify(v))}catch(__){return v}}
 }
+// FIRESTORE-SAFE PUBLISH V1: keep the original manager UI, photo URLs and
+// gallery layout, while avoiding arrays directly nested inside other arrays.
+// Firestore accepts arrays inside a map; it rejects arrays directly inside arrays.
+function lumierePrepareFirestorePayload(data){
+  const templates=(data&&data.templates)||{};
+  Object.entries(templates).forEach(([id,template])=>{
+    const d=template&&template.defaults;
+    if(!d||typeof d!=='object')return;
+    // The native template customizer formerly wrote gallerySlots as
+    // [[url1,url2],[url3],...], which causes DocumentReference.update() to fail.
+    const slots=d.gallerySlots;
+    if(Array.isArray(slots)&&slots.some(Array.isArray)){
+      const cleaned=slots.slice(0,5).map(slot=>(Array.isArray(slot)?slot:[slot])
+        .filter(v=>typeof v==='string'&&/^https:\/\//i.test(v)).slice(0,3));
+      d.gallerySlotGroups=Object.fromEntries(cleaned.map((slot,i)=>['slot'+i,slot]));
+      if(!Array.isArray(d.gallery)||!d.gallery.length)d.gallery=cleaned.flat().slice(0,15);
+      delete d.gallerySlots; // Main Site derives display slots from d.gallery.
+    }
+    // Some legacy customizers submitted the gallery itself as nested arrays.
+    if(Array.isArray(d.gallery)&&d.gallery.some(Array.isArray)){
+      const grouped=d.gallery.slice(0,5).map(slot=>(Array.isArray(slot)?slot:[slot])
+        .filter(v=>typeof v==='string'&&/^https:\/\//i.test(v)).slice(0,3));
+      if(!d.gallerySlotGroups)d.gallerySlotGroups=Object.fromEntries(grouped.map((slot,i)=>['slot'+i,slot]));
+      d.gallery=grouped.flat().slice(0,15);
+    }
+  });
+  // Never silently discard other data. Name any unexpected invalid field.
+  const seen=new WeakSet();
+  function findNested(value,path,parentIsArray){
+    if(!value||typeof value!=='object')return '';
+    if(Array.isArray(value)){
+      if(parentIsArray)return path;
+      for(let i=0;i<value.length;i++){
+        const bad=findNested(value[i],path+'['+i+']',true);
+        if(bad)return bad;
+      }
+      return '';
+    }
+    if(seen.has(value))return '';
+    seen.add(value);
+    for(const [key,item] of Object.entries(value)){
+      const bad=findNested(item,path+'.'+key,false);
+      if(bad)return bad;
+    }
+    return '';
+  }
+  const badPath=findNested(data,'siteSettings/public',false);
+  if(badPath)throw Error('A nested list cannot be published at '+badPath+'. Open this template and save its photo gallery again.');
+  return data;
+}
 function buildLumierePublicConfig(){
   const keys=['content','visibility','announcement','priceDrop','support','templates','templateOrder','templateFilters','pricingPlans','pricingPlanOrder'];
   const payload={};
@@ -1540,6 +1590,12 @@ async function saveConfig(options={}){
     updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
     updatedBy:{uid:currentUser.uid,email:currentUser.email||''}
   };
+  // Sanitize a copy for Firestore. currentConfig stays unchanged for live editing.
+  try{lumierePrepareFirestorePayload(payload)}catch(error){
+    setState('Publish blocked • Invalid gallery data');
+    if(!options.quiet)alert('Could not publish to Main: '+(error.message||error));
+    return false;
+  }
   setState(options.quiet?'Syncing to Main…':'Publishing to Main…');
   let saved=false;
   try{
@@ -1576,7 +1632,7 @@ async function saveConfig(options={}){
     });
     return true;
   }catch(e){
-    setState('Publish failed • Check Firebase permissions');
+    setState(/nested array|invalid data|nested list/i.test(String(e?.message||''))?'Publish failed • Invalid gallery data':'Publish failed • Check Firebase permissions');
     console.error('Manager Firebase publish failed:',e);
     if(!options.quiet)alert('Could not publish to Main: '+(e.message||e));
     return false;
@@ -6098,9 +6154,11 @@ function init(){
          if(!v)continue;const url=await resolveNativeImage(v,id,n);if(url)urls.push(url);
        }
        defaults.gallery=urls;
-       if(urls.length){
-         defaults.gallerySlots=Array.from({length:5},(_,i)=>urls.length<5?[urls[i%urls.length]]:urls.filter((_,j)=>j%5===i).slice(0,3));
-       }else{defaults.gallerySlots=[];}
+       // Keep exact 5-slot grouping in an object containing arrays (valid in Firestore).
+       // Main's existing gallery fallback rebuilds the slots from defaults.gallery.
+       const groupedSlots=urls.length?Array.from({length:5},(_,i)=>urls.length<5?[urls[i%urls.length]]:urls.filter((_,j)=>j%5===i).slice(0,3)):[];
+       defaults.gallerySlotGroups=Object.fromEntries(groupedSlots.map((slot,i)=>['slot'+i,slot]));
+       delete defaults.gallerySlots;
        value.previewImages=urls;
      }
      value.defaults=defaults;
