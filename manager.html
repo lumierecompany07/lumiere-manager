@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta name="lumiere-build" content="firebase-main-manager-live-sync-v1">
+<head><meta name="lumiere-build" content="firebase-main-supabase-photo-upload-20261106">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LUMIÈRE Site Manager</title>
@@ -285,6 +285,24 @@ html.lum-manager-reduced-motion .card,html.lum-manager-reduced-motion .user-chip
 #panel-templatecustomize .lum-bg-figure{background:#f3ebde}
 #panel-templatecustomize .lum-bg-figure img{width:100%;height:100%;object-fit:cover}
 @media(max-width:640px){#panel-templatecustomize .lum-background-editor{margin-top:10px}}
+</style>
+<style id="lumSupabasePhotoAuthStyle20261106">
+#panel-templatecustomize .lum-media-auth{background:#fffaf0;border:1px solid #decda8;border-radius:18px;padding:17px;margin:0 0 18px}
+#panel-templatecustomize .lum-media-auth-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#panel-templatecustomize .lum-media-auth h3{font:700 19px/1.25 'Playfair Display',serif;margin:4px 0 5px;color:#372c20}
+#panel-templatecustomize .lum-media-auth p{font:500 11px/1.65 'Plus Jakarta Sans',sans-serif;color:#75674e;max-width:570px;margin:0 0 12px}
+#panel-templatecustomize .lum-media-pill{display:inline-flex;align-items:center;white-space:nowrap;font-size:10px;font-weight:800;border:1px solid #e4d0a0;color:#805f29;background:#fff4d9;border-radius:999px;padding:6px 10px}
+#panel-templatecustomize .lum-media-pill.connected{color:#176f4a;background:#e5f6ec;border-color:#b7dfc7}
+#panel-templatecustomize .lum-media-login{display:flex;align-items:end;gap:9px;flex-wrap:wrap}
+#panel-templatecustomize .lum-media-login[hidden]{display:none}
+#panel-templatecustomize .lum-media-login .field{flex:1 1 190px}
+#panel-templatecustomize .lum-media-login input{font-size:11px;padding:11px;box-shadow:none;background:#fffefa}
+#panel-templatecustomize .lum-media-login>button{min-height:42px}
+#panel-templatecustomize .lum-media-connected{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:11px;color:#176f4a;font-weight:800}
+#panel-templatecustomize .lum-media-connected[hidden]{display:none}
+#panel-templatecustomize .lum-media-message{font-size:10px;color:#796441;margin:9px 0 0;line-height:1.65}
+#panel-templatecustomize .lum-media-message.error{color:#a43f3f}
+@media(max-width:600px){#panel-templatecustomize .lum-media-login{flex-direction:column;align-items:stretch}#panel-templatecustomize .lum-media-login .field{flex:auto;width:100%}#panel-templatecustomize .lum-media-login>button{width:100%}}
 </style>
 </head>
 <body>
@@ -978,6 +996,20 @@ html.lum-manager-reduced-motion .card,html.lum-manager-reduced-motion .user-chip
  <div class="lum-catalog-heading"><div><span class="lum-catalog-eyebrow">PUBLIC TEMPLATE GALLERY</span><h2>Preview photos &amp; display details</h2><p>Edit the selected template's published gallery preview independently from a customer's wedding details.</p></div><span class="lum-catalog-id" id="lumCatalogCurrentId">TEMPLATE 01</span></div>
  <div class="lum-catalog-layout">
   <div class="lum-catalog-edit">
+    <section class="lum-media-auth" aria-labelledby="lumMediaAuthTitle" id="lumMediaAuthBox">
+      <div class="lum-media-auth-header">
+        <div><span class="lum-thumb-eyebrow">SECURE CLOUD UPLOAD</span><h3 id="lumMediaAuthTitle">Connect Supabase Photos</h3>
+          <p>Manager login stays on Firebase. Sign in here once with your authorized Supabase upload account to upload thumbnails, preview backgrounds and gallery photos.</p></div>
+        <span class="lum-media-pill" id="lumMediaAuthPill">Not connected</span>
+      </div>
+      <div class="lum-media-login" id="lumMediaLoginFields">
+        <div class="field"><label for="lumMediaEmail">Supabase upload email</label><input type="email" id="lumMediaEmail" placeholder="Your Supabase admin email" autocomplete="username"></div>
+        <div class="field"><label for="lumMediaPassword">Supabase password</label><input type="password" id="lumMediaPassword" placeholder="Supabase account password" autocomplete="current-password"></div>
+        <button type="button" class="lum-thumb-action" id="lumMediaConnect">Connect uploads</button>
+      </div>
+      <div class="lum-media-connected" id="lumMediaConnected" hidden><span id="lumMediaAccount"></span><button type="button" class="lum-thumb-action ghost" id="lumMediaDisconnect">Disconnect</button></div>
+      <div class="lum-media-message" id="lumMediaMessage" role="status" aria-live="polite">Connect the approved account before uploading photos. No service-role key is required.</div>
+    </section>
    <section class="lum-thumbnail-editor" aria-labelledby="lumThumbEditorTitle">
    <div class="lum-thumb-figure"><img id="lumThumbImage" alt="Selected template thumbnail" hidden><span id="lumThumbEmpty">No thumbnail<br>selected yet</span></div>
    <div class="lum-thumb-copy">
@@ -1007,7 +1039,7 @@ html.lum-manager-reduced-motion .card,html.lum-manager-reduced-motion .user-chip
    </div>
  </section>
  <div class="lum-catalog-subhead"><h3>Preview images <small>(up to 8)</small></h3><label class="lum-catalog-upload" for="lumCatalogFile"><span aria-hidden="true">＋</span> Add photos</label><input id="lumCatalogFile" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden></div>
-   <p class="lum-catalog-help">First image is the cover. Choose photos from your device (JPG, PNG or WebP; 8 MB max each). Images upload to Firebase Storage. Use arrows to change order.</p>
+   <p class="lum-catalog-help">First image is the cover. Choose photos from your device (JPG, PNG or WebP; 8 MB max each). Images upload securely to Supabase Storage (approved admin only). Use arrows to change order.</p>
    <div class="lum-catalog-photo-list" id="lumCatalogImages"></div>
    <div class="lum-catalog-divider"></div>
    <div class="lum-catalog-subhead"><h3>What’s included <small>(up to 12)</small></h3><button class="lum-catalog-secondary" type="button" id="lumCatalogAddDetail">+ Add detail</button></div>
@@ -6004,6 +6036,76 @@ const defaultDetails=[
  {title:'Itinerary',description:'Event programme'}
 ];
 let selected=0,images=[],thumbnail="",background="",dirty=false,uploading=false,thumbBusy=false,bgBusy=false;
+// Separate Supabase Auth client for IMAGE UPLOADS only. Payments still use their original client.
+// The publishable key is safe in a static site; Supabase RLS is the real permission boundary.
+const MEDIA_BUCKET='lumiere-template-media';
+const MEDIA_ADMIN_UID='165a0ef0-918a-4347-9229-118528a302ac';
+const MEDIA_MAX_UPLOAD=2*1024*1024;
+let mediaClient=null;
+try{
+ if(window.supabase&&typeof window.supabase.createClient==='function'&&window.LUMIERE_SUPABASE_URL&&window.LUMIERE_SUPABASE_PUBLISHABLE_KEY){
+  mediaClient=window.supabase.createClient(window.LUMIERE_SUPABASE_URL,window.LUMIERE_SUPABASE_PUBLISHABLE_KEY,{
+   auth:{storageKey:'lumiere-media-auth-v1',persistSession:true,autoRefreshToken:true,detectSessionInUrl:false},
+   global:{headers:{'x-application-name':'lumiere-manager-media'}}
+  });
+ }
+}catch(err){console.warn('LUMIERE image upload connection unavailable:',err)}
+function mediaMessage(message,error=false){const el=$('lumMediaMessage');if(el){el.textContent=message;el.classList.toggle('error',!!error)}}
+function mediaSignedIn(user){
+ const valid=!!(user&&user.id===MEDIA_ADMIN_UID);
+ const pill=$('lumMediaAuthPill'),form=$('lumMediaLoginFields'),connected=$('lumMediaConnected'),name=$('lumMediaAccount');
+ if(pill){pill.textContent=valid?'Upload account connected':'Not connected';pill.classList.toggle('connected',valid)}
+ if(form)form.hidden=valid;
+ if(connected)connected.hidden=!valid;
+ if(name)name.textContent=valid?('Authorized: '+(user.email||'Supabase admin')):'';
+ return valid;
+}
+async function refreshMediaAuth(){
+ if(!mediaClient){mediaSignedIn(null);mediaMessage('Supabase library not available. Check internet connection and reload.',true);return}
+ try{
+  const {data,error}=await mediaClient.auth.getUser();
+  if(error||!mediaSignedIn(data?.user)){
+   mediaSignedIn(null);
+   mediaMessage('Sign in with the approved Supabase account to upload images.');
+  }else mediaMessage('Connected. Photos will be uploaded to Supabase; click Save & Publish to update the Main Website.');
+ }catch(e){mediaSignedIn(null);mediaMessage('Cannot verify Supabase session: '+(e?.message||e),true)}
+}
+async function requireMediaUpload(){
+ if(!currentUser||!auth.currentUser)throw Error('Sign in to the Lumière Manager (Firebase) first.');
+ if(!mediaClient)throw Error('Supabase connection unavailable; reload the Manager.');
+ const {data,error}=await mediaClient.auth.getUser();
+ if(error||!data?.user)throw Error('Connect your Supabase upload account above first.');
+ if(data.user.id!==MEDIA_ADMIN_UID)throw Error('This Supabase account is not authorized for media uploads.');
+ return mediaClient;
+}
+async function uploadToMediaBucket(blob,path){
+ const client=await requireMediaUpload();
+ if(!blob||!blob.type||!/^image\/(webp|jpeg|png)$/i.test(blob.type))throw Error('Only JPG, PNG and WebP photos are allowed.');
+ if(blob.size>MEDIA_MAX_UPLOAD)throw Error('Compressed file is larger than the 2 MB bucket limit. Choose a smaller photo.');
+ const {error}=await client.storage.from(MEDIA_BUCKET).upload(path,blob,{contentType:blob.type,cacheControl:'31536000',upsert:false});
+ if(error)throw Error(error.message||'Supabase upload failed. Check the storage bucket and policies.');
+ const result=client.storage.from(MEDIA_BUCKET).getPublicUrl(path);
+ const url=result?.data?.publicUrl||'';
+ if(!/^https:\/\//.test(url))throw Error('Public image link was not returned. Set the Supabase bucket to Public.');
+ return url;
+}
+async function loginMediaAccount(){
+ const email=$('lumMediaEmail').value.trim(),password=$('lumMediaPassword').value;
+ const btn=$('lumMediaConnect');
+ if(!currentUser||!auth.currentUser){mediaMessage('Log in to Lumière Manager first.',true);return}
+ if(!mediaClient){mediaMessage('Supabase connection is missing. Refresh or check network.',true);return}
+ if(!email||!password){mediaMessage('Enter your Supabase upload email and password.',true);return}
+ btn.disabled=true;mediaMessage('Connecting authorized upload account…');
+ try{
+  const {data,error}=await mediaClient.auth.signInWithPassword({email,password});
+  if(error)throw error;
+  if(data?.user?.id!==MEDIA_ADMIN_UID){await mediaClient.auth.signOut();throw Error('This account is not approved for photo uploads. Use the second authorized Supabase account.');}
+  mediaSignedIn(data.user);
+  mediaMessage('Secure photo uploads connected. You can now upload thumbnails and backgrounds.');
+ }catch(e){mediaSignedIn(null);mediaMessage('Login failed: '+(e?.message||e)+'. Use the Supabase account password, not your Firebase password unless they match.',true)}
+ finally{$('lumMediaPassword').value='';btn.disabled=false}
+}
+
 const status=(s,err)=>{const e=$('lumCatalogStatus');if(e){e.textContent=s;e.style.color=err?'#aa3737':'#735b34'}};
 const isUrl=v=>{try{const u=new URL(v);return u.protocol==='https:'&&!u.username&&!u.password&&!/\s/.test(v)}catch(_){return false}};
 function templateRow(id){return document.querySelector('#templateList .template-row[data-template="'+id+'"]');}
@@ -6033,8 +6135,15 @@ function load(id){id=Number(id)||1;selected=id;const t=currentEntry(id);images=(
 function capture(){if(!selected)return false;const row=templateRow(selected);if(!row)return false;const config=currentConfig;if(!config||!config.templates)return false;let t=config.templates[String(selected)];if(!t||typeof t!=='object')return false;t.previewImages=images.slice(0,LIMIT);t.thumbnailUrl=thumbnail;t.previewBackgroundUrl=background;t.previewDetails=detailRows();t.previewSummary=$('lumCatalogSummary').value.trim().slice(0,170);changedConfigPaths.add('templates.'+selected);return true;}
 function syncMasterSelect(){const el=$('lumMasterSelect');if(!el)return;const next=Number(el.value)||1;if(next===selected)return;if(dirty&&!confirm('Discard unpublished preview photos and details for template #'+selected+'?')){el.value=String(selected);return false;}load(next);return true;}
 async function reduceImage(file){if(!/^image\/(jpeg|png|webp)$/i.test(file.type))throw Error('Only JPG, PNG and WebP images are allowed');if(file.size>8*1024*1024)throw Error('Image is over 8 MB: '+file.name);if(file.size<120000)return file;try{const bitmap=await createImageBitmap(file);const side=Math.max(bitmap.width,bitmap.height),scale=Math.min(1,1200/side);const c=document.createElement('canvas');c.width=Math.max(1,Math.round(bitmap.width*scale));c.height=Math.max(1,Math.round(bitmap.height*scale));const ctx=c.getContext('2d',{alpha:false});ctx.fillStyle='#ffffff';ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(bitmap,0,0,c.width,c.height);if(bitmap.close)bitmap.close();const blob=await new Promise(resolve=>c.toBlob(resolve,'image/webp',0.81));if(blob&&blob.type==='image/webp'&&blob.size<file.size)return blob;}catch(e){console.warn('Preview compression unavailable:',e)}return file;}
-async function uploadFile(file){if(!currentUser||!auth.currentUser)throw Error('Sign in to Manager before uploading photos');if(!storage||!storage.ref)throw Error('Firebase Storage is unavailable');const blob=await reduceImage(file),ext=blob.type==='image/webp'?'webp':file.type==='image/png'?'png':'jpg';const name='public-template-previews/'+selected+'/'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'.'+ext;const ref=storage.ref().child(name);await ref.put(blob,{contentType:blob.type||file.type,cacheControl:'public,max-age=3600'});const url=await ref.getDownloadURL();if(!isUrl(url))throw Error('Uploaded image did not return a secure URL');return url;}
-async function onFiles(files){if(uploading||!files||!files.length)return;const id=selected;if(!id)return;const array=Array.from(files);if(array.length>LIMIT-images.length){status('Limit: add up to '+LIMIT+' photos per template',true);return;}uploading=true;const input=$('lumCatalogFile');input.disabled=true;$('lumMasterSave').disabled=true;$('lumMasterSelect').disabled=true;try{for(let i=0;i<array.length;i++){if(selected!==id)throw Error('Template changed during upload. Choose it again.');status('Uploading photo '+(i+1)+' of '+array.length+' to Firebase Storage…');const url=await uploadFile(array[i]);if(selected!==id)throw Error('Template changed during upload');images.push(url);renderImages();mark();}status('Uploaded '+array.length+' photo(s). Click Save & Publish This Template to display them on Main.');}catch(e){status('Upload failed: '+(e?.message||e)+'. Check Firebase Storage rules / connection.',true);}finally{uploading=false;input.disabled=false;$('lumMasterSave').disabled=false;$('lumMasterSelect').disabled=false;input.value='';}}
+async function uploadFile(file){
+ const blob=await reduceImage(file);
+ const ext=blob.type==='image/webp'?'webp':blob.type==='image/png'?'png':'jpg';
+ const name='public-template-previews/'+selected+'/'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'.'+ext;
+ const url=await uploadToMediaBucket(blob,name);
+ if(!isUrl(url))throw Error('Storage did not return a secure image URL');
+ return url;
+}
+async function onFiles(files){if(uploading||!files||!files.length)return;const id=selected;if(!id)return;const array=Array.from(files);if(array.length>LIMIT-images.length){status('Limit: add up to '+LIMIT+' photos per template',true);return;}uploading=true;const input=$('lumCatalogFile');input.disabled=true;$('lumMasterSave').disabled=true;$('lumMasterSelect').disabled=true;try{for(let i=0;i<array.length;i++){if(selected!==id)throw Error('Template changed during upload. Choose it again.');status('Uploading photo '+(i+1)+' of '+array.length+' to Supabase Storage…');const url=await uploadFile(array[i]);if(selected!==id)throw Error('Template changed during upload');images.push(url);renderImages();mark();}status('Uploaded '+array.length+' photo(s). Click Save & Publish This Template to display them on Main.');}catch(e){status('Upload failed: '+(e?.message||e)+'. Check Supabase media login, bucket and RLS policies.',true);}finally{uploading=false;input.disabled=false;$('lumMasterSave').disabled=false;$('lumMasterSelect').disabled=false;input.value='';}}
 async function makeThumbnail(file){
  if(!/^image\/(jpeg|png|webp)$/i.test(file.type))throw Error('Choose JPG, PNG or WebP');
  if(file.size>8*1024*1024)throw Error('Image must be smaller than 8 MB');
@@ -6064,18 +6173,17 @@ async function uploadThumbnail(file){
  const pick=$('lumThumbPick'),choose=$('lumThumbFile'),remove=$('lumThumbRemove'),save=$('lumMasterSave'),sel=$('lumMasterSelect');
  pick.style.pointerEvents='none';choose.disabled=true;remove.disabled=true;save.disabled=true;sel.disabled=true;
  try{
+  await requireMediaUpload();
   $('lumThumbStatus').textContent='Optimizing image for 5 Mbps mobile visitors…';
   const blob=await makeThumbnail(file);
-  $('lumThumbStatus').textContent='Uploading '+Math.round(blob.size/1024)+' KB WebP to Firebase Storage…';
+  $('lumThumbStatus').textContent='Uploading '+Math.round(blob.size/1024)+' KB WebP to Supabase Storage…';
   const path='public-template-previews/'+id+'/thumbnail-'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'.webp';
-  const ref=storage.ref().child(path);
-  await ref.put(blob,{contentType:'image/webp',cacheControl:'public,max-age=31536000,immutable'});
-  const url=await ref.getDownloadURL();
+  const url=await uploadToMediaBucket(blob,path);
   if(selected!==id)throw Error('Selected template changed during upload');
   if(!isUrl(url))throw Error('Storage did not return a secure URL');
   thumbnail=url;mark();
   $('lumThumbStatus').textContent='Uploaded '+Math.round(blob.size/1024)+' KB thumbnail. Click Save & Publish This Template to make it live.';
- }catch(e){console.warn('Thumbnail upload failed',e);$('lumThumbStatus').textContent='Upload failed: '+(e&&e.message||e)+' · Check Firebase Storage permissions.';}
+ }catch(e){console.warn('Thumbnail upload failed',e);$('lumThumbStatus').textContent='Upload failed: '+(e&&e.message||e)+' · Check Supabase media login / Storage policy.';}
  finally{thumbBusy=false;pick.style.pointerEvents='';choose.disabled=false;save.disabled=false;sel.disabled=false;remove.disabled=!thumbnail;choose.value='';}
 }
 
@@ -6109,22 +6217,31 @@ async function uploadBackground(file){
  const pick=$('lumBgPick'),choose=$('lumBgFile'),remove=$('lumBgRemove'),save=$('lumMasterSave'),sel=$('lumMasterSelect');
  pick.style.pointerEvents='none';choose.disabled=true;remove.disabled=true;save.disabled=true;sel.disabled=true;
  try{
+  await requireMediaUpload();
   $('lumBgStatus').textContent='Optimizing gallery background for mobile…';
   const blob=await makePreviewBackground(file);
-  $('lumBgStatus').textContent='Uploading '+Math.round(blob.size/1024)+' KB WebP to Firebase Storage…';
+  $('lumBgStatus').textContent='Uploading '+Math.round(blob.size/1024)+' KB WebP to Supabase Storage…';
   const path='public-template-previews/'+id+'/background-'+Date.now()+'-'+Math.random().toString(36).slice(2,9)+'.webp';
-  const ref=storage.ref().child(path);
-  await ref.put(blob,{contentType:'image/webp',cacheControl:'public,max-age=31536000,immutable'});
-  const url=await ref.getDownloadURL();
+  const url=await uploadToMediaBucket(blob,path);
   if(selected!==id)throw Error('Selected template changed during upload');
-  if(!isUrl(url))throw Error('Firebase Storage did not return a secure URL');
+  if(!isUrl(url))throw Error('Supabase Storage did not return a secure URL');
   background=url;mark();
   $('lumBgStatus').textContent='Uploaded '+Math.round(blob.size/1024)+' KB. Click Save & Publish This Template.';
- }catch(e){console.warn('Gallery background upload failed',e);$('lumBgStatus').textContent='Upload failed: '+(e&&e.message||e)+' · Check Firebase Storage permissions.';}
+ }catch(e){console.warn('Gallery background upload failed',e);$('lumBgStatus').textContent='Upload failed: '+(e&&e.message||e)+' · Check Supabase media login / Storage policy.';}
  finally{bgBusy=false;pick.style.pointerEvents='';choose.disabled=false;save.disabled=false;sel.disabled=false;remove.disabled=!background;choose.value='';}
 }
 
-function init(){const select=$('lumMasterSelect'),panel=$('panel-templatecustomize');if(!select||!panel)return;const start=Number(select.value||0);if(start)load(start);else setTimeout(()=>load(Number(select.value)||1),200);
+function init(){const select=$('lumMasterSelect'),panel=$('panel-templatecustomize');if(!select||!panel)return;
+ $('lumMediaConnect')?.addEventListener('click',loginMediaAccount);
+ $('lumMediaPassword')?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();loginMediaAccount()}});
+ $('lumMediaDisconnect')?.addEventListener('click',async()=>{
+  if(!mediaClient)return;
+  try{await mediaClient.auth.signOut();mediaSignedIn(null);mediaMessage('Upload account disconnected.');}
+  catch(e){mediaMessage('Disconnect failed: '+(e?.message||e),true)}
+ });
+ $('logoutBtn')?.addEventListener('click',()=>{if(mediaClient)mediaClient.auth.signOut().catch(()=>{});mediaSignedIn(null)});
+ refreshMediaAuth();
+const start=Number(select.value||0);if(start)load(start);else setTimeout(()=>load(Number(select.value)||1),200);
  select.addEventListener('change',e=>{syncMasterSelect();},true);
  $('lumCatalogFile').addEventListener('change',e=>onFiles(e.target.files));
  $('lumThumbFile').addEventListener('change',e=>{if(e.target.files&&e.target.files[0])uploadThumbnail(e.target.files[0]);});
